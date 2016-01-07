@@ -9,5 +9,5 @@
 <h6>Inicializando os ambientes com o docker </h6>
 ```
   git clone https://github.com/terra-media/poc-redis.git
-
+  cd poc-redis
 ```  
