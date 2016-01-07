@@ -6,7 +6,7 @@
 - Tirar e colocar nós
 
 
-<h6>Inicialiar os ambientes com vagrant - node1 e node2 </h6>
+<h6>Inicializando os ambientes com o docker </h6>
 ```
   git clone https://github.com/terra-media/poc-redis.git
 
