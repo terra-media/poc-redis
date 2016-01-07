@@ -10,4 +10,5 @@
 ```
   git clone https://github.com/terra-media/poc-redis.git
   cd poc-redis
+  sh init-enviroment.sh
 ```  
