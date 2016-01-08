@@ -15,13 +15,6 @@
 
 <h6>Acessando os containers </h6>
 ```
-$ docker ps
-$ docker exec -i -t redis-slave1 bash
-$ docker exec -i -t redis-slave2 bash
-$ docker exec -i -t redis-slave3 bash
-
-```  
-
 ############################################################################
 #                     INFORMATION REDIS/SENTINEL                           #
 ############################################################################
@@ -29,6 +22,14 @@ $ docker exec -i -t redis-slave3 bash
 # Slave2| Redis/IP: 172.17.0.3:6379  Sentinel/IP: 172.17.0.3:26379         #
 # Slave3| Redis/IP: 172.17.0.4:6379  Sentinel/IP: 172.17.0.4:26379         #
 ############################################################################
+
+
+$ docker ps
+$ docker exec -i -t redis-slave1 bash
+$ docker exec -i -t redis-slave2 bash
+$ docker exec -i -t redis-slave3 bash
+
+```  
 
 <h6>Acessando o Redis </h6>
 OBS: Execute os comandos abaixo só após ter conectado em um dos containers(redis-slave1, redis-slave2 ou redis-slave3)
