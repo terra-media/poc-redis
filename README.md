@@ -5,6 +5,11 @@
 - App com integração com spring-data-redis
 - Tirar e colocar nós
 
+<h6>Pré-requisitos </h6>
+- Docker
+- Maven 3
+- Java 7
+
 
 <h6>Inicializando os ambientes com o docker </h6>
 ```
@@ -45,7 +50,7 @@ $ exit
 
 ``` 
 
-<h6>Acessando o Sentinel </h6>
+<h6>Acessando o Sentinel(Responsável por eleger o nó master) </h6>
 OBS: Execute os comandos abaixo só após ter conectado em um dos containers(redis-slave1, redis-slave2 ou redis-slave3)
 ```
 ## Para acessar o Sentinel
