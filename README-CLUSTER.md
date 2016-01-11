@@ -2,7 +2,7 @@
 
 - Configurar em Cluster o Redis em 3 containers, sendo 3 masters e 3 slaves.
 - Acessar slave/master
-- App com integração com spring-data-redis
+- App spring boot para teste
 - Tirar e colocar nós
 
 <h6>Pré-requisitos </h6>
