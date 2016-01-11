@@ -13,10 +13,9 @@
 ```
   $ git clone https://github.com/terra-media/poc-redis.git
   $ cd poc-redis/redis-cluster
-  ## run ./start.sh xxx xxx xxx xxx xxx xxx # where xxx will be  the 6 next IP's setup for each container 
+  ## execute ./start.sh xxx xxx xxx xxx xxx xxx onde xxx deverá ser o IP de configuração de cada container. 
   $ ./start.sh 172.17.0.2 172.17.0.3 172.17.0.4 172.17.0.5 172.17.0.6 172.17.0.7
 ```  
-
 
 
 <h6>Acessando o Redis </h6>
