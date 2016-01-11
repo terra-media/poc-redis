@@ -28,7 +28,7 @@ $ INFO REPLICATION
 
 ## Para sair
 $ exit
-
+```
 
 <h6>Parando um instancia master/slave </h6>
 ```
