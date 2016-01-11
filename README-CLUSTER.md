@@ -33,12 +33,12 @@ $ exit
 <h6>Parando um instancia master/slave </h6>
 ```
 ## Exibir instancias UP
-docker ps
+$ docker ps
 
 ## Para acessar o redis pelo redis-cli
-docker stop <NAME_CONTAINER>
+$ docker stop <NAME_CONTAINER>
 
-``` 
 
 ## Caso queira parar todos os containers dockers
 $ ./stop.sh
+```
