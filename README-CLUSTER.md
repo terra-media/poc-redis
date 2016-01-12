@@ -13,6 +13,7 @@
 ```
   $ git clone https://github.com/terra-media/poc-redis.git
   $ cd poc-redis/redis-cluster
+  $ docker build -t redis-cluster .
   ## execute ./start.sh xxx xxx xxx xxx xxx xxx onde xxx deverá ser o IP de configuração de cada container. 
   $ ./start.sh 172.17.0.2 172.17.0.3 172.17.0.4 172.17.0.5 172.17.0.6 172.17.0.7
 ```  
