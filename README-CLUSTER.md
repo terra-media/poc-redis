@@ -31,6 +31,12 @@ $ INFO REPLICATION
 $ exit
 ```
 
+<h6>Subindo a aplicação integrado com redis</h6>
+```
+cd SpringRedisCluster/ && mvn spring-boot:run
+
+``` 
+
 <h6>Parando um instancia master/slave </h6>
 ```
 ## Exibir instancias UP
