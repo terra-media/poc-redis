@@ -1,0 +1,6 @@
+# Docker container to up 6 container redis been 3 master and 3 slaves
+1 step install docker
+2 run ./start.sh xxx xxx xxx xxx xxx xxx # where xxx will be  the 6 next IP's setup for each container 
+# Ex: ./start.sh 172.17.0.2 172.17.0.3 172.17.0.4 172.17.0.5 172.17.0.6 172.17.0.7
+3 You can stop all nodes with running ./stop.sh
+

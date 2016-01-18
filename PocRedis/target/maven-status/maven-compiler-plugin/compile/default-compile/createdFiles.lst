@@ -1,0 +1,3 @@
+br/com/uol/poc/redis/endpoint/TestEndPoint.class
+br/com/uol/poc/redis/service/RedisRepositoryCommunication.class
+br/com/uol/poc/redis/PocRedisApplication.class

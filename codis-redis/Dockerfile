@@ -12,28 +12,28 @@ RUN mkdir work \
 
 ENV PATH=$PATH:/usr/local/go/bin
 ENV GOPATH=$HOME/work
-ENV CODISPATH=$GOPATH/src/github.com/wandoulabs/codis/bin
-ENV PATH=$PATH:$GOPATH/bin:$CODISPATH
-ENV PATH=$PATH:$GOPATH/src/github.com/ngaut/codis-ha
+ENV CODISPATH=$GOPATH/src/github.com/CodisLabs/codis
+ENV PATH=$PATH:$GOPATH/bin:$CODISPATH/bin
+ENV PATH=$PATH:$GOPATH/src/github.com/thiagohora/codis-ha
 
-RUN go get -u -d github.com/wandoulabs/codis ; exit 0
+RUN go get -u -d github.com/CodisLabs/codis; exit 0
 
-WORKDIR $GOPATH/src/github.com/wandoulabs/codis
+WORKDIR $CODISPATH
 
-RUN go get -u -d github.com/ngaut/codis-ha && make && make gotest
+RUN go get -u -d github.com/thiagohora/codis-ha && make && make gotest
 
-WORKDIR $GOPATH/src/github.com/ngaut/codis-ha
+WORKDIR $GOPATH/src/github.com/thiagohora/codis-ha
 
 RUN go build
 
-COPY codis.sh $CODISPATH/start.sh
-COPY config.ini $CODISPATH/config.ini
+WORKDIR $CODISPATH/bin
+
+COPY codis.sh $CODISPATH/bin/start.sh
+COPY config.ini $CODISPATH/bin/config.ini
 
 EXPOSE 19000
 EXPOSE 11000
 EXPOSE 18087
-
-WORKDIR $CODISPATH
 
 RUN mkdir log
 
