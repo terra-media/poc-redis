@@ -1,0 +1,6 @@
+br/com/uol/poc/redis/service/RedisRepositoryCommunication.class
+br/com/uol/poc/redis/PocRedisApplication.class
+br/com/uol/poc/redis/repository/BookRepo.class
+br/com/uol/poc/redis/endpoint/TestEndPoint.class
+br/com/uol/poc/redis/model/Book.class
+br/com/uol/poc/redis/cache/CacheConfig.class
