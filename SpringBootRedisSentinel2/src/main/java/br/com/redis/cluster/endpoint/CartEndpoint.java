@@ -4,45 +4,49 @@ import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.redis.cluster.model.Cart;
 import br.com.redis.cluster.model.Item;
 
 @RestController
-@RequestMapping("/cache")
+@RequestMapping("/cache/cart")
 public class CartEndpoint {
+  
+  private static final String OK = "OK";
   
   @Autowired
   private Cart cart;
   
-  @RequestMapping(value="/add", method=RequestMethod.POST)
-  public void add(@RequestBody Item item){
-    cart.add(item);
+  @RequestMapping(value="/add/{id}/{name}")
+  public String add(@PathVariable("id") Long id, @PathVariable("name") String name){
+    cart.add(new Item(id, name));
+    return OK;
   }
   
-  @RequestMapping("/getItem/{id}")
+  @RequestMapping(value="/get/{id}", produces=MediaType.APPLICATION_JSON_VALUE)
   public Item getItem(@PathVariable("id") Long id){
     return cart.getItem(id);
   }
   
-  @RequestMapping("/getItens")
+  @RequestMapping("/getAll")
   public List<Item> getItens(){
     return cart.getItens();
   }
   
-  @RequestMapping(value="/delete/{id}", method=RequestMethod.DELETE)
-  public void delete(@PathVariable("id") Long id) throws IOException{
+  @RequestMapping(value="/delete/{id}")
+  public String delete(@PathVariable("id") Long id) throws IOException{
     cart.delete(new Item(id));
+    return OK;
   }
   
-  @RequestMapping(value="/update", method=RequestMethod.POST)
-  public void update(@RequestBody Item item) throws IOException{
-    cart.update(item);
+  @RequestMapping(value="/update/{id}/{name}")
+  public String update(@PathVariable("id") Long id, @PathVariable("name") String name) throws IOException{
+    cart.update(new Item(id, name));
+    return OK;
   }
 
 }

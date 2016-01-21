@@ -14,6 +14,11 @@ public class Item implements Serializable{
   public Item(final Long id) {
    this.id = id;
   }
+  
+  public Item(final Long id, final String name) {
+    this.id = id;
+    this.name = name;
+   }
 
   public Long getId() {
     return id;
