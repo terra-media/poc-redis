@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheManager;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 
@@ -25,8 +26,8 @@ public class RedisClusterApplicationConfig extends CachingConfigurerSupport {
 
   @Bean
   public RedisTemplate<?, ?> sessionRedisTemplate(RedisConnectionFactory connectionFactory) {
-    final Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<>(Object.class);
-    final GenericToStringSerializer<Object> genericToStringSerializer = new GenericToStringSerializer<>(Object.class);
+    final GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
+    final GenericToStringSerializer<Object> genericToStringSerializer = new GenericToStringSerializer(Object.class);
     redisTemplate.setConnectionFactory(connectionFactory);
     redisTemplate.setKeySerializer(genericToStringSerializer);
     redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
@@ -43,17 +44,4 @@ public class RedisClusterApplicationConfig extends CachingConfigurerSupport {
     return cacheManager;
   }
 
-  @Override
-  public KeyGenerator keyGenerator() {
-    return (o, method, params) -> {
-      StringBuilder sb = new StringBuilder();
-      sb.append(o.getClass().getName());
-      sb.append(":"+method.getName()+"(");
-    for (Object param : params) {
-        sb.append(param.getClass().getSimpleName()+":"+param.toString());
-  }
-    sb.append(")");
-    return sb.toString();
-  };
-  }
 }

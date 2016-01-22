@@ -8,11 +8,12 @@ import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.GenericToStringSerializer;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.Collections;
@@ -20,7 +21,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-@EnableTransactionManagement
+@EnableRedisHttpSession(maxInactiveIntervalInSeconds = 60)
 @EnableCaching
 @EnableScheduling
 @SpringBootApplication
@@ -36,24 +37,37 @@ public class PocRedisApplication extends SpringBootServletInitializer {
 	}
 
 	@Bean
+	public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+		final RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<Object, Object>();
+		final GenericJackson2JsonRedisSerializer jackson2JsonRedisSerializer = new GenericJackson2JsonRedisSerializer();
+		final GenericToStringSerializer<Object> genericToStringSerializer = new GenericToStringSerializer(Object.class);
+		redisTemplate.setConnectionFactory(connectionFactory);
+		redisTemplate.setKeySerializer(genericToStringSerializer);
+		redisTemplate.setValueSerializer(jackson2JsonRedisSerializer);
+		redisTemplate.setDefaultSerializer(jackson2JsonRedisSerializer);
+		redisTemplate.setHashKeySerializer(genericToStringSerializer);
+		redisTemplate.setHashValueSerializer(jackson2JsonRedisSerializer);
+		return redisTemplate;
+	}
+
+	@Bean
 	public CacheManager cacheManager(RedisTemplate redisTemplate) {
-		redisTemplate.setKeySerializer(new GenericToStringSerializer<>(Object.class));
-		redisTemplate.setValueSerializer(new Jackson2JsonRedisSerializer<>(Object.class));
-		redisTemplate.afterPropertiesSet();
-
 		RedisCacheManager cache = new RedisCacheManager(redisTemplate);
+
+		//cache.setUsePrefix(true);
+		//cache.setCachePrefix(cacheName ->(PocRedisApplication.class.getSimpleName()+":").getBytes());
+
+		cache.setLoadRemoteCachesOnStartup(true);
+
 		cache.setDefaultExpiration(90);
-
 		Map<String, Long> expires = Collections.unmodifiableMap(Stream.of(
-				new SimpleEntry<>("books", 60L),
-				new SimpleEntry<>("user", 30L)
+			new SimpleEntry<>("books", 60L),
+			new SimpleEntry<>("user", 30L)
 		).collect(
-			Collectors.toMap(e -> e.getKey(),e -> e.getValue())
+			Collectors.toMap(SimpleEntry::getKey,SimpleEntry::getValue)
 		));
-
 		cache.setExpires(expires);
 
 		return cache;
 	}
-
 }

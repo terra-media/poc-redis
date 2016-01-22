@@ -22,30 +22,30 @@ public class TestEndPoint {
         this.bookRepo = bookRepo;
     }
 
-    @RequestMapping(path = "/get/{key}" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.TEXT_PLAIN_VALUE)
-    public Book get(@PathVariable("key") String key) {
+    @RequestMapping(path = "/get/{key}" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Book get(@PathVariable("key") Long key) {
         return bookRepo.get(key);
     }
 
-    @RequestMapping(path = "/set" ,method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(path = "/set" ,method = RequestMethod.POST, produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public String set(@RequestBody Book book) {
         bookRepo.add(book);
         return "OK!";
     }
 
-    @RequestMapping(path = "/up/{key}" ,method = RequestMethod.PUT, produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public String up(@PathVariable("key") String key, @RequestBody Book book) {
+    @RequestMapping(path = "/up/{key}" ,method = RequestMethod.PUT, produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public String up(@PathVariable("key") Long key, @RequestBody Book book) {
         bookRepo.update(key, book);
         return "OK!";
     }
 
-    @RequestMapping(path = "/del/{key}" ,method = RequestMethod.DELETE, produces = MediaType.TEXT_PLAIN_VALUE, consumes = MediaType.TEXT_PLAIN_VALUE)
-    public String del(@PathVariable("key") String key) {
+    @RequestMapping(path = "/del/{key}" ,method = RequestMethod.DELETE, produces = MediaType.TEXT_PLAIN_VALUE)
+    public String del(@PathVariable("key") Long key) {
         bookRepo.delete(key);
         return "OK!";
     }
 
-    @RequestMapping(path = "/get/all" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(path = "/get/all" ,method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Book> getAll() {
         return bookRepo.getAll();
     }
