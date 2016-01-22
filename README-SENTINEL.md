@@ -79,3 +79,8 @@ docker ps
 docker stop <NAME_CONTAINER>
 
 ``` 
+
+<h6>Material de Apoio:</h6>
+
+http://redis.io/download
+http://redis.io/topics/sentinel
