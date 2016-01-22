@@ -15,7 +15,7 @@
 ```
   $ git clone https://github.com/terra-media/poc-redis.git
   $ cd poc-redis
-  $ sh init-enviroment.sh
+  $ sh redis-sentinel/start.sh
 ```  
 
 <h6>Acessando os containers </h6>
