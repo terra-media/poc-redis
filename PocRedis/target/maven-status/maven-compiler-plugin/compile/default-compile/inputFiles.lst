@@ -1,3 +1,8 @@
-/home/vrx_hora/workspace/PocRedis/src/main/java/br/com/uol/poc/redis/PocRedisApplication.java
-/home/vrx_hora/workspace/PocRedis/src/main/java/br/com/uol/poc/redis/service/RedisRepositoryCommunication.java
-/home/vrx_hora/workspace/PocRedis/src/main/java/br/com/uol/poc/redis/endpoint/TestEndPoint.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/endpoint/LoginEndpoint.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/model/Book.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/repository/BookRepo.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/PocRedisApplication.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/security/SecurityConfig.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/endpoint/TestEndPoint.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/service/RedisRepositoryCommunication.java
+/home/vrx_hora/repository/git/poc-redis/PocRedisCodis/src/main/java/br/com/uol/poc/redis/cache/CacheConfig.java
