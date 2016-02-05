@@ -42,7 +42,7 @@ cd SpringRedisCluster/ && mvn spring-boot:run
 ## Exibir instancias UP
 $ docker ps
 
-## Para acessar o redis pelo redis-cli
+## Para parar um container docker
 $ docker stop <NAME_CONTAINER>
 
 
